@@ -39,4 +39,27 @@ typedef struct state_node_t {
 // para crear states tipo 'G' no se utiliza el parametro c
 State* create_state(char t, char q, char c);
 
+typedef struct {
+  ExecQueue** data; 
+  size_t tope;
+  size_t capacity;
+} ExecQueueStack; // Stack de referencias
+                  
+ExecQueueStack build_eqs();
+void free_eqs(ExecQueueStack s);
+ExecQueue* top_eqs(ExecQueueStack s);
+ExecQueue* pop_eqs(ExecQueueStack* s);
+void push_eqs(ExecQueueStack* s, ExecQueue* q);
+bool esvacia_eqs(ExecQueueStack s);
+
+ExecQueue compile_regex(char* re);
+
+
+bool check(ExecQueue q);
+
+typedef struct sm_result_t { // State Machine run result
+  bool b;   // regex SM acepta una cadena
+  size_t c; // cuantos caracteres recorrio
+} Result;
+
 #endif
